@@ -19,6 +19,11 @@ public class Solution {
         target = 9;
         result = twoSum(nums, target);
         System.out.println(Arrays.toString(result));
+
+        nums = new int[]{-1,-2,-3,-4,-5};
+        target = -8;
+        result = twoSum(nums, target);
+        System.out.println(Arrays.toString(result));
     }
 
     public static int[] twoSum(int[] nums, int target) {
@@ -26,7 +31,6 @@ public class Solution {
 
         outer:
         for (int i = 0; i < nums.length; i++) {
-            if (nums[i] > target) continue;
             for (int j = i + 1; j < nums.length; j++) {
                 if (nums[i] + nums[j] == target) {
                     indexes[0] = i;
