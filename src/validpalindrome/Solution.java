@@ -10,6 +10,7 @@ public class Solution {
         System.out.println(isPalindrome("A_ha"));
         System.out.println(isPalindromeOptimized("A man, a plan, a canal: Panama"));
         System.out.println(isPalindromeStack("A man, a plan, a canal: Panama"));
+        System.out.println(isPalindromeXOR("A man, a plan, a canal: Panama"));
     }
 
     public static boolean isPalindrome(String s) {
@@ -59,8 +60,31 @@ public class Solution {
         while (!stack.isEmpty()) {
             builder.append(stack.pop());
         }
-        String reversed = builder.toString();
+        String processedAndReversed = builder.toString();
 
-        return processed.equals(reversed);
+        return processed.equals(processedAndReversed);
+    }
+
+    public static boolean isPalindromeXOR(String s) {
+        String processed = s.replaceAll("[\\W_]", "").toLowerCase();
+        char[] chars = processed.toCharArray();
+
+        int low = 0;
+        int high = chars.length - 1;
+
+        StringBuilder builder = new StringBuilder();
+        while (low < high) {
+            chars[low] = (char) (chars[low] ^ chars[high]);
+            chars[high] = (char) (chars[low] ^ chars[high]);
+            chars[low] = (char) (chars[low] ^ chars[high]);
+            low++;
+            high--;
+        }
+        for (int i = 0; i < chars.length; i++) {
+            builder.append(chars[i]);
+        }
+        String processedAndReversed = builder.toString();
+
+        return processed.equals(processedAndReversed);
     }
 }
