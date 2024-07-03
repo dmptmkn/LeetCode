@@ -66,13 +66,20 @@ public class Solution {
     }
 
     public static boolean isPalindromeXOR(String s) {
-        String processed = s.replaceAll("[\\W_]", "").toLowerCase();
-        char[] chars = processed.toCharArray();
+        char[] chars = s.toCharArray();
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = chars.length - 1; i >= 0; i--) {
+            if (Character.isLetterOrDigit(chars[i])) {
+                builder.append(Character.toLowerCase(chars[i]));
+            }
+        }
+        String processed = builder.toString();
 
         int low = 0;
         int high = chars.length - 1;
 
-        StringBuilder builder = new StringBuilder();
+        builder = new StringBuilder();
         while (low < high) {
             chars[low] = (char) (chars[low] ^ chars[high]);
             chars[high] = (char) (chars[low] ^ chars[high]);
@@ -80,6 +87,7 @@ public class Solution {
             low++;
             high--;
         }
+
         for (int i = 0; i < chars.length; i++) {
             builder.append(chars[i]);
         }
