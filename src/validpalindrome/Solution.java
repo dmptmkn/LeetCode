@@ -5,21 +5,21 @@ import java.util.Stack;
 public class Solution {
 
     public static void main(String[] args) {
-        System.out.println(isPalindrome("A man, a plan, a canal: Panama"));
-        System.out.println(isPalindrome("race a car"));
-        System.out.println(isPalindrome("A_ha"));
-        System.out.println(isPalindromeOptimized("A man, a plan, a canal: Panama"));
+        System.out.println(isPalindromeStringBuilder("A man, a plan, a canal: Panama"));
+        System.out.println(isPalindromeStringBuilder("race a car"));
+        System.out.println(isPalindromeStringBuilder("A_ha"));
+        System.out.println(isPalindromeArray("A man, a plan, a canal: Panama"));
         System.out.println(isPalindromeStack("A man, a plan, a canal: Panama"));
         System.out.println(isPalindromeXOR("A man, a plan, a canal: Panama"));
     }
 
-    public static boolean isPalindrome(String s) {
+    public static boolean isPalindromeStringBuilder(String s) {
         String processed = s.replaceAll("[\\W_]", "").toLowerCase();
         String processedAndReversed = new StringBuilder(processed).reverse().toString();
         return processed.equals(processedAndReversed);
     }
 
-    public static boolean isPalindromeOptimized(String s) {
+    public static boolean isPalindromeArray(String s) {
         char[] chars = s.toCharArray();
 
         StringBuilder builder = new StringBuilder();
