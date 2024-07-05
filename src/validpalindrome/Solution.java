@@ -95,4 +95,23 @@ public class Solution {
 
         return processed.equals(processedAndReversed);
     }
+
+    public static boolean isPalindromeOptimized(String s) {
+        char[] chars = s.toCharArray();
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = chars.length - 1; i >= 0; i--) {
+            if (Character.isLetterOrDigit(chars[i])) {
+                builder.append(Character.toLowerCase(chars[i]));
+            }
+        }
+        String processed = builder.toString();
+
+        for (int i = 0, j = processed.length() - 1; i < j; i++, j--) {
+            if (processed.charAt(i) != processed.charAt(j)) return false;
+        }
+
+        return true;
+    }
+
 }
