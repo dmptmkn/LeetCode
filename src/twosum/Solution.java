@@ -1,6 +1,7 @@
 package twosum;
 
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class Solution {
 
@@ -20,7 +21,7 @@ public class Solution {
         result = twoSum(nums, target);
         System.out.println(Arrays.toString(result));
 
-        nums = new int[]{-1,-2,-3,-4,-5};
+        nums = new int[]{-1, -2, -3, -4, -5};
         target = -8;
         result = twoSum(nums, target);
         System.out.println(Arrays.toString(result));
@@ -41,5 +42,18 @@ public class Solution {
         }
 
         return indexes;
+    }
+
+    public static int[] twoSumHashMap(int[] nums, int target) {
+        HashMap<Integer, Integer> sums = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            if (sums.containsKey(target - nums[i]) && i != sums.get(target - nums[i])) {
+                return new int[]{i, sums.get(target - nums[i])};
+            }
+            sums.put(nums[i], i);
+        }
+
+        return null;
     }
 }
